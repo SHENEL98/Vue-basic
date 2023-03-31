@@ -2,7 +2,8 @@
   <div>
     <h2>My First Vue App </h2>
     <h3>{{ title }}</h3>
-    <Modal />
+    <Modal header="Sign up for giveaway !" :subHeader="subHeader" 
+      text="check prop is work or not" theme="red" />
   </div>
 </template>
 
@@ -14,6 +15,7 @@ export default {
   data() {
     return {
       title: "My First Vue App :)",
+      subHeader: "Subheader is here"
     };
   },
   methods:{

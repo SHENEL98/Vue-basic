@@ -1,11 +1,19 @@
 <template>
     <div class="backdrop">
-        <div class="modal">
-            <h1>Modal Title</h1>
-            <p>Modal content</p>
+        <div class="modal" :class="{ red: theme === 'red' }">
+            <h1>{{ header }}</h1>
+            <p>{{ text }}</p>
+
+            <p>{{ subHeader }}</p>
         </div>
     </div>
 </template>
+
+<script>
+export default{
+    props: ['header','subHeader','theme']
+}
+</script>
 
 <style>
 .modal{
@@ -29,5 +37,12 @@
 }
 .modal p{
     font-style: normal;
+}
+.modal.red{
+    background: crimson;
+    color: aliceblue;
+}
+.modal.red h1{
+    color: rgb(162, 229, 6);
 }
 </style>
