@@ -1,4 +1,1 @@
-Challenge :
-    *create an extra button to open a different modal
-    *use the same modal component but pass in a different template (slot)
-    *use a different method and data
+Teleport ​ <Teleport> is a built-in component that allows us to "teleport" a part of a component's template into a DOM node that exists outside the DOM hierarchy of that component.

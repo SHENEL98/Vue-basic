@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <div v-if="showModal">
+    <teleport to=".modals" v-if="showModal">
       <Modal theme="red" @close="toggleModal">
         <h1>This is Modal</h1>
         <p>Good Luck</p>
@@ -9,7 +9,7 @@
           <a href="#">Click here to more information</a>
         </template>
       </Modal>
-    </div>
+    </teleport>
 
     <div v-if="showModalTwo">
       <Modal @close="toggleModalTwo">
