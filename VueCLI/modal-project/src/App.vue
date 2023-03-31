@@ -10,25 +10,38 @@
         </template>
       </Modal>
     </div>
+
+    <div v-if="showModalTwo">
+      <Modal @close="toggleModalTwo">
+        <h1>Modal Two</h1>
+      </Modal>
+    </div>
     <button @click.left="toggleModal">Open Modal</button>
+
+    <button @click.shift="toggleModalTwo">Open Modal (Shift)</button>
   </div>
 </template>
 
 <script>
-import Modal from "./components/Modal.vue";
+import Modal from "./components/Modal.vue"; 
+
 export default {
   name: "App",
-  components: { Modal },
+  components: { Modal},
   data() {
     return {
       title: "My First Vue App :)",
       subHeader: "Subheader is here",
       showModal: false,
+      showModalTwo:false,
     };
   },
   methods: {
     toggleModal() {
       this.showModal = !this.showModal;
+    },
+    toggleModalTwo(){
+      this.showModalTwo = !this.showModalTwo;
     },
   },
 };
