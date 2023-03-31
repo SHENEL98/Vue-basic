@@ -1,9 +1,11 @@
 <template>
-  <div>
-    <h2>My First Vue App </h2>
-    <h3>{{ title }}</h3>
-    <Modal header="Sign up for giveaway !" :subHeader="subHeader" 
-      text="check prop is work or not" theme="red" />
+  <div> 
+    <h1>{{ title }}</h1>
+    <div v-if="showModal">
+      <Modal header="Sign up for giveaway !" :subHeader="subHeader" 
+      text="check prop is work or not" theme="red" @close="toggleModal"/>
+    </div>
+    <button @click="toggleModal">Open Modal</button>
   </div>
 </template>
 
@@ -15,15 +17,14 @@ export default {
   data() {
     return {
       title: "My First Vue App :)",
-      subHeader: "Subheader is here"
+      subHeader: "Subheader is here",
+      showModal: false
     };
   },
   methods:{
-    handleClick(){
-      console.log(this.$refs.name)
-      this.$refs.name.classList.add('active')
-      this.$refs.name.focus()
-    }
+     toggleModal(){
+      this.showModal = !this.showModal
+     }
   }
 };
 </script>
