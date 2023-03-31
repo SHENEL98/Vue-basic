@@ -5,7 +5,7 @@
       <Modal header="Sign up for giveaway !" :subHeader="subHeader" 
       text="check prop is work or not" theme="red" @close="toggleModal"/>
     </div>
-    <button @click="toggleModal">Open Modal</button>
+    <button @click.left="toggleModal">Open Modal</button>
   </div>
 </template>
 
