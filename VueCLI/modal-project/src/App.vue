@@ -1,31 +1,36 @@
 <template>
-  <div> 
+  <div>
     <h1>{{ title }}</h1>
     <div v-if="showModal">
-      <Modal header="Sign up for giveaway !" :subHeader="subHeader" 
-      text="check prop is work or not" theme="red" @close="toggleModal"/>
+      <Modal theme="red" @close="toggleModal">
+        <h1>This is Modal</h1>
+        <p>Good Luck</p>
+        <template v-slot:links>
+          <a href="#">Click here to more information</a>
+        </template>
+      </Modal>
     </div>
     <button @click.left="toggleModal">Open Modal</button>
   </div>
 </template>
 
 <script>
-import Modal from './components/Modal.vue'
+import Modal from "./components/Modal.vue";
 export default {
   name: "App",
-  components: {Modal},
+  components: { Modal },
   data() {
     return {
       title: "My First Vue App :)",
       subHeader: "Subheader is here",
-      showModal: false
+      showModal: false,
     };
   },
-  methods:{
-     toggleModal(){
-      this.showModal = !this.showModal
-     }
-  }
+  methods: {
+    toggleModal() {
+      this.showModal = !this.showModal;
+    },
+  },
 };
 </script>
 
@@ -37,7 +42,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}h1{
+}
+h1 {
   border-bottom: 1px solid #ddd;
   display: inline-block;
 }
