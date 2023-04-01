@@ -1,11 +1,13 @@
 <template>
     <div>
-<form action="">
+<form @submit.prevent="handleSubmit"> 
+    <!-- by using prevent pn from submition we can pass data without refreshing -->
     <label for="">Email :</label>
     <input type="email" v-model="email" required>
   
     <label for="">Password :</label>
     <input type="password" v-model="password" required>
+    <div class="error" v-if="passwordError">{{ passwordError }}}</div>
 
     <label for="">Role</label>
     <select name="" id="" v-model="role">
@@ -38,6 +40,9 @@
         <label for="">Fred</label>
     </div> -->
 
+    <div class="submit">
+        <button>Create an Account</button>
+    </div>
 </form>
   <p>Email : {{ email }}</p>
   <p>Password : {{ password }}</p>
@@ -58,7 +63,8 @@ export default {
             terms: '',
             // names: []
             tempSkill: [],
-            skills: []
+            skills: [],
+            passwordError: ''
         }
     },
     methods:{
@@ -74,6 +80,11 @@ export default {
             this.skills = this.skills.filter((item) => {
                 return skill !== item
             })
+        },
+        handleSubmit(){
+            // validate password
+            this.passwordError = this.password.length > 5 ? '': 'Password must be more than 5 characters'
+            
         }
     }
 }
