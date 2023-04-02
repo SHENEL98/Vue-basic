@@ -1,4 +1,4 @@
-# vue-routes_project
+# vue-routes-project
 
 ## Project setup
 ```
