@@ -1,45 +1,40 @@
 <template>
   <div class="home">
-   <h2>Home</h2>
-   <p ref="p">Name is : {{ name }} and age {{ age }}</p>
+    <h1>Home</h1>
+    <h2>Refs</h2>
+    <p>{{ vueOne.name }} - {{ vueOne.age }}</p>
+    <button @click="updateVueOne">Update VueOne</button>
 
-   <button @click="handleClick">CLick Me</button>
-    <button @click="age++">Add 1 Age</button>
-   <input type="text" v-model="name">
+    <h2>Reactive</h2>
+    <p>{{ vueTwo.name }} - {{ vueTwo.age }}</p>
 
-   </div>
+    <button @click="updateVueTwo">Update VueOne</button>
+
+  </div>
 </template>
 
-<script> 
-import { ref } from 'vue' 
+<script>
+import { ref, reactive } from "vue";
 
 export default {
-  name: 'HomeView',
-  setup(){
-    console.log('setup')
+  name: "HomeView",
+  setup() {
+     const vueOne = ref({name:'Roy',age:26})
+     const vueTwo = reactive({name:'Kamal',age:80})
 
-    const name = ref('roy')
-    const age = ref(30) 
-      
-    
+     const updateVueOne = () => {
+      vueOne.value.age = 30
+     }
 
-    const handleClick = () => {
-      name.value = 'Kamal'
-      age.value = 25
-    
-    }
+     const updateVueTwo = () => {
+      vueTwo.age = 87
+     }
 
-    return{
-      name,
-      age, 
-      handleClick
-    }
+
+    return {
+      vueOne, updateVueOne, vueTwo,updateVueTwo
+    };
   },
-  data(){
-    return{
-      score: 5
-    }
-  }
-
-}
+  
+};
 </script>
