@@ -1,38 +1,39 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <h2>Refs</h2>
-    <p>{{ vueOne.name }} - {{ vueOne.age }}</p>
-    <button @click="updateVueOne">Update VueOne</button>
+    <input type="text" v-model="search">
+    <p>All names</p>
+    <div v-for="name in names" :key="name">
+      {{ name }}
+    </div>
 
-    <h2>Reactive</h2>
-    <p>{{ vueTwo.name }} - {{ vueTwo.age }}</p>
-
-    <button @click="updateVueTwo">Update VueOne</button>
-
+    <p>Search terms : {{ search }}</p>
+    <p>Matching names will show in below</p>
+    <div v-for="name in matchingNames" :key="name">
+      {{ name }}
+    </div>
   </div>
 </template>
 
 <script>
-import { ref, reactive } from "vue";
+import { ref, computed } from "vue";
 
 export default {
   name: "HomeView",
   setup() {
-     const vueOne = ref({name:'Roy',age:26})
-     const vueTwo = reactive({name:'Kamal',age:80})
+    // const name = computed(() => {
+    //   return 'KAMAL'
+    // })
 
-     const updateVueOne = () => {
-      vueOne.value.age = 30
-     }
+    const search = ref('')
+    const names = ref(['name1', 'name2','roy','nizar','marco'])
 
-     const updateVueTwo = () => {
-      vueTwo.age = 87
-     }
-
+    const  matchingNames = computed(() => {
+      return names.value.filter((name) => name.includes(search.value))
+    })
 
     return {
-      vueOne, updateVueOne, vueTwo,updateVueTwo
+      names, search,matchingNames
     };
   },
   
