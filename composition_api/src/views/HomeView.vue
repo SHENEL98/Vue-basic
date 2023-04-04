@@ -4,12 +4,13 @@
    <p ref="p">Name is : {{ name }} and age {{ age }}</p>
 
    <button @click="handleClick">CLick Me</button>
+    <button @click="age++">Add 1 Age</button>
+   <input type="text" v-model="name">
 
    </div>
 </template>
 
-<script>
-// @ is an alias to /src
+<script> 
 import { ref } from 'vue' 
 
 export default {
@@ -17,38 +18,28 @@ export default {
   setup(){
     console.log('setup')
 
-    const p = ref(null)
-
-    let name = 'roy'
-    let age =30
-    //these are not reactive values(above values)
+    const name = ref('roy')
+    const age = ref(30) 
+      
+    
 
     const handleClick = () => {
-      console.log('you clicked me') 
-      console.log(p, p.value)
-      p.value.classList.add('test')
-      p.value.textContent = 'Hello, How are you ?' //in here when you click button ref(p) will change to this content
+      name.value = 'Kamal'
+      age.value = 25
+    
     }
 
     return{
-      name:name,
-      age, // this is same as above
-      handleClick,
-      p
+      name,
+      age, 
+      handleClick
     }
   },
-  // data(){
-  //   return{
-  //     //this are reactive values
-  //     age: 40
-  //   }
-  // }
+  data(){
+    return{
+      score: 5
+    }
+  }
 
-  // created(){
-  //   console.log('created')
-  // },
-  // mounted(){
-  //   console.log('mounted')
-  // }
 }
 </script>
