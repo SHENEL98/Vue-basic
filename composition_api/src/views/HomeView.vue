@@ -1,28 +1,42 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <PostList v-if="showPosts" :posts="posts"/>
-    <button @click="showPosts = !showPosts">Toggle post</button>
-    <button @click="posts.pop()">Delete post</button>
+    <div v-if="error">{{ error }}</div>
+    <div v-if="posts.length">
+      <PostList :posts="posts" />      
+    </div>
+    <div v-else>Loading</div>
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
-import PostList from '../components/PostList.vue';
+import PostList from "../components/PostList.vue";
 
 export default {
   name: "HomeView",
-  components : {PostList},
+  components: { PostList },
   setup() {
-    const posts = ref([
-      {title: 'welcome to the blog', body:'body 1|body 1|body 1|body 1|body 1', id:1},
-      {title: 'top 5 CSS tips', body:'body 2', id:2},
-    ])
+    const posts = ref([]);
+    const error = ref(null);
 
-    const showPosts = ref(true)
+    const load = async () => {
+      try {
+        let data = await fetch("http://localhost:3000/posts");
+        console.log(data);
+        if(!data.ok){
+          throw Error('no data available')
+        }
+        posts.value = await data.json()
 
-    return {posts, showPosts}
+      } catch (err) {
+        error.value = err.message
+        console.log(error.value)
+      }
+    };
+    load();
+
+    return { posts,error };
   },
 };
 </script>
