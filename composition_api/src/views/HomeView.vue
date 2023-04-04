@@ -1,13 +1,16 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <PostList :posts="posts"/>
+    <PostList v-if="showPosts" :posts="posts"/>
+    <button @click="showPosts = !showPosts">Toggle post</button>
+    <button @click="posts.pop()">Delete post</button>
   </div>
 </template>
 
 <script>
 import { ref } from "vue";
 import PostList from '../components/PostList.vue';
+
 export default {
   name: "HomeView",
   components : {PostList},
@@ -17,7 +20,9 @@ export default {
       {title: 'top 5 CSS tips', body:'body 2', id:2},
     ])
 
-    return {posts}
+    const showPosts = ref(true)
+
+    return {posts, showPosts}
   },
 };
 </script>
